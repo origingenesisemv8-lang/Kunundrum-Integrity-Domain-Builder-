@@ -1,4 +1,4 @@
-kunundrum-integrity-domain-builder/
+VERCEL_GIT_COMMIT_AUTHOR_NAME=Timmy Trianglekunundrum-integrity-domain-builder/
 ├── app/
 │   ├── page.tsx
 │   └── api/
