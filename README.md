@@ -17,3 +17,12 @@ VERCEL_GIT_COMMIT_AUTHOR_NAME=Timmy Trianglekunundrum-integrity-domain-builder/
     "start": "next start"
   }
 }
+# Install the authority tool
+npm install -g vercel
+
+# Login as Timmy Triangle
+vercel login
+
+# Link and push the integrity builder
+vercel link
+vercel deploy --prod
