@@ -1,13 +1,38 @@
 {
-  "name": "kunundrum-integrity-domain-builder",
+  "name": "create-integrity-domain",
   "version": "1.0.0",
-  "description": "Domain builder with DNAI_SEAL stabilization and Kunundrum Garage integration",
+  "description": "CLI tool to create new Integrity Domains with DNAI_SEAL stabilization and Kunundrum Garage integration",
+  "main": "cli/index.js",
+  "bin": {
+    "create-integrity-domain": "cli/index.js"
+  },
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
+  "keywords": [
+    "integrity",
+    "domain",
+    "builder",
+    "kunundrum",
+    "dnai",
+    "cli",
+    "next.js",
+    "house-of-integrity"
+  ],
+  "author": "ryan-daniel-cole-sr",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/origingenesisemv8-lang/Kunundrum-Integrity-Domain-Builder-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/origingenesisemv8-lang/Kunundrum-Integrity-Domain-Builder-/issues"
+  },
+  "homepage": "https://github.com/origingenesisemv8-lang/Kunundrum-Integrity-Domain-Builder-#readme",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,5 +45,8 @@
     "tailwindcss": "^3.3.0",
     "postcss": "^8.4.24",
     "autoprefixer": "^10.4.14"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
