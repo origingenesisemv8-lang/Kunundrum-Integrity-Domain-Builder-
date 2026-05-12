@@ -1,36 +1,7 @@
-kunundrum-integrity-domain-builder/
-├── app/
-│   ├── page.tsx
-│   └── api/
-│       └── engine/
-│           └── stabilize/
-│               └── route.ts
-├── package.json
-├── next.config.js          (optional)
-├── tsconfig.json
-├── tailwind.config.ts
-└── README.md
-{
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  }
-}
+
 git init
 git add .
 git commit -m "Initial sovereign domain builder - House of Integrity"
 git branch -M main
 git remote add origin https://github.com/origingenesisemv8-lang/kunundrum-integrity-domain-builder.git
 git push -u origin main
-
-# Install the authority tool
-npm install -g vercel
-
-# Login as Timmy Triangle
-vercel login
-
-# Link and push the integrity builder
-vercel link
-vercel deploy --prod
-
