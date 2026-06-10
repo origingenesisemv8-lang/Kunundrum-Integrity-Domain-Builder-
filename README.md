@@ -780,3 +780,152 @@ pub fn execute_domain_stabilization_gate(js_payload: JsValue) -> bool {
                                              │
                                              ▼
 [ LAYER 0: Immutable Ledger ] ────────────► Mutation appended to the timeline permanently (Ledger + 1)
+[ IndexedDB Storage Topography ]
+ ├── immutable_ledger_l0
+ │     ├── Index: tick (Auto-Increment, Primary Key)
+ │     └── Fields: identity, intent, root, layer, signature, stateHash, timestamp
+ └── materialized_anchors_l1
+       ├── Index: anchor_tick (Primary Key)
+       └── Fields: materialized_state_snapshot, cryptographic_sealkunundrum-domain-builder/
+├── app/
+│   ├── layout.tsx                  # Global HTML Shell
+│   ├── page.tsx                    # SovereignBuilder Workspace UI Engine
+│   └── api/
+│       └── engine/
+│           └── stabilize/
+│               └── route.ts        # SHA-256 Validation Gate & Mimicry Check
+├── components/
+│   ├── GlyphStatus.tsx             # Real-time visual layout indicators
+│   └── LedgerTerminal.tsx          # Local replay transaction stream tracker
+├── core-engine/                    # Low-Level Invariant Core
+│   ├── Cargo.toml                  # Rust compilation definitions
+│   └── src/
+│       ├── lib.rs                  # WASM bindings & entry pathways
+│       ├── invariants.rs           # L3 Invariant Engine Gate rules
+│       └── arbitration.rs          # L4 Intent Priority matrices
+├── public/
+│   └── wasm/                       # Compiled assembly execution binaries
+├── tsconfig.json                   # TypeScript operational settings
+└── package.json     // app/page.tsx
+'use react';
+import React, { useState, useEffect } from 'react';
+
+interface LogEntry {
+  tick: number;
+  root: string;
+  suggestedDomain: string;
+  stateHash: string;
+  status: string;
+}
+
+export default function SovereignBuilder() {
+  const [identity, setIdentity] = useState('ryan-daniel-cole-sr');
+  const [selectedRoot, setSelectedRoot] = useState('Kunundrum');
+  const [layer, setLayer] = useState('HouseOfIntegrity');
+  const [signature, setSignature] = useState('(ØdDF€||Å)');
+  const [ledger, setLedger] = useState<LogEntry[]>([]);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  // Available roots matching the core framework specification
+  const rootsList = [
+    "Kunundrum", "Integrixa", "Dnalith", "IntegriTyx", "HouseOfDNAI",
+    "DNAIHouse", "Veritasia", "IntegrityHouse", "GarageKU", "KuIntegrity"
+  ];
+
+  const handleStabilizationSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsProcessing(true);
+
+    try {
+      const response = await fetch('/api/engine/stabilize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identity, intent: 'domain-stabilize', root: selectedRoot, layer, signature }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Step forward in execution sequence (Ledger + 1)
+        setLedger((prev) => [
+          ...prev,
+          {
+            tick: prev.length + 1,
+            root: data.root,
+            suggestedDomain: data.suggestedDomain,
+            stateHash: data.stateHash.slice(0, 8) + '...',
+            status: data.status,
+          },
+        ]);
+      } else {
+        alert(`Execution Refused: ${data.error}`);
+      }
+    } catch (err) {
+      console.error("Kernel Synchronization Fault", err);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  return (
+    <div style={{ backgroundColor: '#0c0f12', color: '#e2e8f0', minHeight: '100vh', padding: '2rem', fontFamily: 'monospace' }}>
+      <header style={{ borderBottom: '1px solid #1e293b', paddingBottom: '1rem', marginBottom: '2rem' }}>
+        <h1 style={{ color: '#f97316', margin: 0 }}>🏛️ Kunundrum Integrity Domain Builder</h1>
+        <p style={{ color: '#94a3b8', fontSize: '0.85rem' }}>House of Integrity • Dual-Locked Runloop v1.0 \\V//</p>
+      </header>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+        {/* Intent Submission Panel */}
+        <section style={{ backgroundColor: '#111827', padding: '1.5rem', borderRadius: '6px', border: '1px solid #1e293b' }}>
+          <h2 style={{ fontSize: '1.1rem', color: '#38bdf8', marginTop: 0 }}>Submit Stabilization Intent</h2>
+          <form onSubmit={handleStabilizationSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div>
+              <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8' }}>Identity Anchor</label>
+              <input type="text" value={identity} onChange={(e) => setIdentity(e.target.value)} style={{ width: '100%', padding: '0.5rem', backgroundColor: '#1f2937', border: '1px solid #374151', color: '#fff', borderRadius: '4px' }} />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8' }}>Domain Lineage Root</label>
+              <select value={selectedRoot} onChange={(e) => setSelectedRoot(e.target.value)} style={{ width: '100%', padding: '0.5rem', backgroundColor: '#1f2937', border: '1px solid #374151', color: '#fff', borderRadius: '4px' }}>
+                {rootsList.map((r) => <option key={r} value={r}>{r}</option>)}
+              </select>
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8' }}>Target System Layer</label>
+              <input type="text" value={layer} onChange={(e) => setLayer(e.target.value)} style={{ width: '100%', padding: '0.5rem', backgroundColor: '#1f2937', border: '1px solid #374151', color: '#fff', borderRadius: '4px' }} />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '0.8rem', color: '#94a3b8' }}>9-Facet Signature</label>
+              <input type="text" value={signature} onChange={(e) => setSignature(e.target.value)} style={{ width: '100%', padding: '0.5rem', backgroundColor: '#1f2937', border: '1px solid #374151', color: '#fff', borderRadius: '4px' }} />
+            </div>
+
+            <button type="submit" disabled={isProcessing} style={{ padding: '0.75rem', backgroundColor: '#f97316', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>
+              {isProcessing ? 'Arbitrating Pipeline...' : 'Commit Intent to Ledger'}
+            </button>
+          </form>
+        </section>
+
+        {/* Observable Reality Terminal */}
+        <section style={{ backgroundColor: '#020617', padding: '1.5rem', borderRadius: '6px', border: '1px solid #1e293b', display: 'flex', flexDirection: 'column' }}>
+          <h2 style={{ fontSize: '1.1rem', color: '#22c55e', marginTop: 0 }}>L0 Reconstructed Reality Projection</h2>
+          <div style={{ flexGrow: 1, overflowY: 'auto', maxHeight: '400px', backgroundColor: '#000', padding: '1rem', borderRadius: '4px', border: '1px solid #111827', fontSize: '0.85rem' }}>
+            {ledger.length === 0 ? (
+              <span style={{ color: '#475569' }}>// Ledger tail is currently empty. Awaiting verification pipeline executions...</span>
+            ) : (
+              ledger.map((entry) => (
+                <div key={entry.tick} style={{ marginBottom: '0.75rem', borderBottom: '1px solid #111827', paddingBottom: '0.5rem' }}>
+                  <div style={{ color: '#eab308' }}>[TICK #{entry.tick}] State Reconstruction Matrix Match</div>
+                  <div><span style={{ color: '#a855f7' }}>Domain:</span> {entry.suggestedDomain}</div>
+                  <div><span style={{ color: '#64748b' }}>Hash:</span> {entry.stateHash}</div>
+                  <div style={{ color: '#22c55e' }}>{entry.status}</div>
+                </div>
+              ))
+            )}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
